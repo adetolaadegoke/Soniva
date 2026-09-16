@@ -9,13 +9,10 @@
   <style>
     :root {
       --bg: #090916;
-      --panel: #15152b;
-      --panel-light: #202044;
       --text: #f8f8ff;
       --muted: #a6a6c3;
       --blue: #237bff;
       --cyan: #54e5ed;
-      --pink: #c34cff;
     }
 
     * {
@@ -32,6 +29,7 @@
         radial-gradient(ellipse at 90% 70%, #151b48 0, transparent 40%),
         var(--bg);
       font-family: Arial, Helvetica, sans-serif;
+      padding-bottom: 20px;
     }
 
     button, input {
@@ -44,7 +42,6 @@
 
     .app {
       width: min(100%, 1180px);
-      min-height: 100vh;
       margin: auto;
       padding: 24px;
     }
@@ -69,7 +66,6 @@
 
     .top-actions {
       display: flex;
-      align-items: center;
       gap: 10px;
     }
 
@@ -96,7 +92,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Welcome screen */
     .welcome {
       min-height: 72vh;
       display: grid;
@@ -155,7 +150,7 @@
     }
 
     .headphone-art {
-      min-height: 380px;
+      min-height: 340px;
       display: grid;
       place-items: center;
       position: relative;
@@ -176,7 +171,6 @@
       filter: drop-shadow(0 25px 35px #0008);
     }
 
-    /* Main dashboard */
     .section-heading {
       display: flex;
       align-items: end;
@@ -279,22 +273,25 @@
       font-weight: bold;
     }
 
+    .feature-card small,
+    .feature-card h3,
+    .feature-card p {
+      z-index: 1;
+    }
+
     .feature-card small {
       color: #d2d8ff;
       margin-bottom: 9px;
-      z-index: 1;
     }
 
     .feature-card h3 {
       font-size: 24px;
       margin-bottom: 8px;
-      z-index: 1;
     }
 
     .feature-card p {
       color: #c1c6e4;
       font-size: 13px;
-      z-index: 1;
     }
 
     .song-grid {
@@ -318,6 +315,17 @@
       border-color: #5e7bff;
     }
 
+    .artist-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      border: 2px solid #45456b;
+      background: linear-gradient(135deg, #087eae, #6849db);
+    }
+
     .album-art {
       aspect-ratio: 1;
       display: grid;
@@ -327,18 +335,6 @@
       color: white;
       font-size: 35px;
       background: linear-gradient(135deg, #087eae, #6849db);
-    }
-
-    .album-art.pink {
-      background: linear-gradient(135deg, #df3c9e, #4938ba);
-    }
-
-    .album-art.orange {
-      background: linear-gradient(135deg, #ef8148, #8b3a9d);
-    }
-
-    .album-art.green {
-      background: linear-gradient(135deg, #13a69c, #294ca7);
     }
 
     .song-card h3 {
@@ -368,7 +364,6 @@
       background: #276eff;
     }
 
-    /* Playlist screen */
     .playlist-header {
       display: flex;
       align-items: center;
@@ -430,8 +425,16 @@
       height: 42px;
       display: grid;
       place-items: center;
-      border-radius: 11px;
+      overflow: hidden;
+      border-radius: 50%;
       background: linear-gradient(135deg, #167ba7, #6847d7);
+    }
+
+    .track-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .track-row h3 {
@@ -449,10 +452,9 @@
       font-size: 13px;
     }
 
-    /* Bottom player */
     .player {
       position: sticky;
-      bottom: 12px;
+      bottom: 10px;
       z-index: 5;
       display: grid;
       grid-template-columns: 1fr 1.5fr 1fr;
@@ -480,8 +482,16 @@
       flex-shrink: 0;
       display: grid;
       place-items: center;
-      border-radius: 12px;
+      overflow: hidden;
+      border-radius: 50%;
       background: linear-gradient(135deg, #10a9c6, #6348e9);
+    }
+
+    .mini-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .player-song h3,
@@ -695,7 +705,6 @@
       <button data-screen="playlist">Playlist</button>
     </nav>
 
-    <!-- Welcome screen -->
     <section class="screen active" id="welcome">
       <div class="welcome">
         <div class="welcome-copy">
@@ -705,7 +714,7 @@
             Discover music that matches your mood.
             Your next favourite song is just one tap away.
           </p>
-          <button class="primary-button" id="getStarted">Get Started&nbsp; →</button>
+          <button class="primary-button" id="getStarted">Get Started →</button>
         </div>
 
         <div class="headphone-art" aria-label="Decorative headphones illustration">
@@ -737,13 +746,11 @@
             <rect x="91" y="176" width="30" height="116" rx="15" fill="#101a3c"/>
             <rect x="239" y="176" width="30" height="116" rx="15" fill="#101a3c"/>
             <path d="M104 56 C132 27 192 22 225 45" fill="none" stroke="#4aa6ff" stroke-width="5" stroke-linecap="round"/>
-            <path d="M63 224 C58 246 62 273 78 286" fill="none" stroke="#ffffff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
           </svg>
         </div>
       </div>
     </section>
 
-    <!-- Discover screen -->
     <section class="screen" id="home">
       <div class="section-heading">
         <div>
@@ -753,7 +760,7 @@
       </div>
 
       <div class="search-wrap">
-        <input class="search" id="search" type="search" placeholder="⌕  Search songs or artists..." aria-label="Search songs or artists">
+        <input class="search" id="search" type="search" placeholder="⌕ Search songs or artists..." aria-label="Search songs or artists">
       </div>
 
       <div class="category-row">
@@ -788,14 +795,13 @@
       <p id="noResults" style="display:none;color:var(--muted);padding:20px 0;">No matching songs found.</p>
     </section>
 
-    <!-- Playlist screen -->
     <section class="screen" id="playlist">
       <div class="playlist-header">
         <div class="playlist-cover">♫</div>
         <div>
           <div class="eyebrow">Soniva collection</div>
           <h2>Your playlist</h2>
-          <p>Your music, your mood.<br><span id="playlistCount">3 songs</span></p>
+          <p>Your music, your mood.<br><span id="playlistCount">1 song</span></p>
           <button class="primary-button" id="playAll" style="margin-top:16px;">▶ Play all</button>
         </div>
       </div>
@@ -810,13 +816,12 @@
       <div class="track-list" id="trackList"></div>
     </section>
 
-    <!-- Persistent music player -->
     <footer class="player">
       <div class="player-song">
-        <div class="mini-art">♫</div>
+        <div class="mini-art" id="miniArt">♫</div>
         <div style="min-width:0;">
-          <h3 id="currentTitle">Choose a song</h3>
-          <p id="currentArtist">Soniva player</p>
+          <h3 id="currentTitle">Cost of Living</h3>
+          <p id="currentArtist">BIG-HASSAN</p>
         </div>
       </div>
 
@@ -843,12 +848,17 @@
   </div>
 
   <script>
-    // Change these details to match your own MP3 files.
+    // Your uploaded song and artist picture.
+    // Keep jhaadilx.mp3 and big-hassan.jpg beside index.html in GitHub.
     const tracks = [
-      { title: "Jhaadilx", artist: "Your Artist", file: "jhaadilx.mp3", category: "Afrobeats", art: "♫", color: "" },
-      { title: "Midnight Pulse", artist: "Your Artist", file: "song2.mp3", category: "Chill", art: "☾", color: "pink" },
-      { title: "Electric Dreams", artist: "Your Artist", file: "song3.mp3", category: "Pop", art: "✦", color: "green" },
-      { title: "Shadow Beats", artist: "Your Artist", file: "song4.mp3", category: "Afrobeats", art: "♬", color: "orange" }
+      {
+        title: "Cost of Living",
+        artist: "BIG-HASSAN",
+        file: "jhaadilx.mp3",
+        image: "big-hassan.jpg",
+        category: "Afrobeats",
+        art: "♫"
+      }
     ];
 
     const audio = document.getElementById("audio");
@@ -874,7 +884,23 @@
       if (!Number.isFinite(seconds)) return "0:00";
       const minutes = Math.floor(seconds / 60);
       const remainder = Math.floor(seconds % 60).toString().padStart(2, "0");
-      return `${minutes}:${remainder}`;
+      return ${minutes}:${remainder};
+    }
+
+    function makeArtistImage(track, className) {
+      const img = document.createElement("img");
+      img.className = className;
+      img.src = track.image;
+      img.alt = ${track.artist} artist picture;
+
+      img.addEventListener("error", () => {
+        const fallback = document.createElement("div");
+        fallback.className = "album-art";
+        fallback.textContent = "♫";
+        img.replaceWith(fallback);
+      }, { once: true });
+
+      return img;
     }
 
     function filteredTracks() {
@@ -883,7 +909,7 @@
       return tracks
         .map((track, index) => ({ ...track, index }))
         .filter(track => {
-          const matchesSearch = `${track.title} ${track.artist}`.toLowerCase().includes(search);
+          const matchesSearch = ${track.title} ${track.artist}.toLowerCase().includes(search);
           const matchesCategory = currentFilter === "all" || track.category === currentFilter;
           return matchesSearch && matchesCategory;
         });
@@ -897,14 +923,20 @@
       visibleTracks.forEach(track => {
         const card = document.createElement("article");
         card.className = "song-card" + (track.index === currentIndex ? " active" : "");
-        card.innerHTML = `
-          <div class="album-art ${track.color}">${track.art}</div>
-          <h3></h3>
-          <p></p>
-          <button class="song-play" aria-label="Play song">▶</button>
-        `;
-        card.querySelector("h3").textContent = track.title;
-        card.querySelector("p").textContent = track.artist;
+
+        card.appendChild(makeArtistImage(track, "artist-photo"));
+        const title = document.createElement("h3");
+        title.textContent = track.title;
+
+        const artist = document.createElement("p");
+        artist.textContent = track.artist;
+
+        const play = document.createElement("button");
+        play.className = "song-play";
+        play.textContent = "▶️";
+        play.setAttribute("aria-label", Play ${track.title});
+
+        card.append(title, artist, play);
         card.addEventListener("click", () => playTrack(track.index));
         songGrid.appendChild(card);
       });
@@ -913,21 +945,28 @@
     function renderPlaylist() {
       trackList.innerHTML = "";
       document.getElementById("playlistCount").textContent =
-        `${tracks.length} ${tracks.length === 1 ? "song" : "songs"}`;
+        ${tracks.length} ${tracks.length === 1 ? "song" : "songs"};
 
       tracks.forEach((track, index) => {
         const row = document.createElement("div");
         row.className = "track-row" + (index === currentIndex ? " active" : "");
-        row.innerHTML = `
-          <div class="track-icon">${track.art}</div>
-          <div>
-            <h3></h3>
-            <p></p>
-          </div>
-          <span class="track-number">${index + 1}　▶</span>
-        `;
-        row.querySelector("h3").textContent = track.title;
-        row.querySelector("p").textContent = track.artist;
+
+        const icon = document.createElement("div");
+        icon.className = "track-icon";
+        icon.appendChild(makeArtistImage(track, ""));
+
+        const details = document.createElement("div");
+        const title = document.createElement("h3");
+        title.textContent = track.title;
+        const artist = document.createElement("p");
+        artist.textContent = track.artist;
+        details.append(title, artist);
+
+        const number = document.createElement("span");
+        number.className = "track-number";
+        number.textContent = ${index + 1}　▶️;
+
+        row.append(icon, details, number);
         row.addEventListener("click", () => playTrack(index));
         trackList.appendChild(row);
       });
@@ -936,6 +975,20 @@
     function refreshViews() {
       renderSongs();
       renderPlaylist();
+    }
+
+    function updatePlayerImage(track) {
+      const miniArt = document.getElementById("miniArt");
+      miniArt.innerHTML = "";
+
+      const img = document.createElement("img");
+      img.src = track.image;
+      img.alt = ${track.artist} artist picture;
+      img.addEventListener("error", () => {
+        miniArt.textContent = "♫";
+      }, { once: true });
+
+      miniArt.appendChild(img);
     }
 
     function playTrack(index) {
@@ -948,15 +1001,16 @@
       document.getElementById("currentTitle").textContent = track.title;
       document.getElementById("currentArtist").textContent = track.artist;
 
+      updatePlayerImage(track);
       refreshViews();
 
       audio.play().then(() => {
         document.getElementById("playPause").textContent = "Ⅱ";
         document.getElementById("playPause").setAttribute("aria-label", "Pause");
       }).catch(() => {
-        document.getElementById("playPause").textContent = "▶";
+        document.getElementById("playPause").textContent = "▶️";
         document.getElementById("playPause").setAttribute("aria-label", "Play");
-        alert(`Could not play "${track.file}". Check that the MP3 file exists and the filename matches.`);
+        alert(Could not play "${track.file}". Check that the MP3 file is uploaded and the filename matches.);
       });
     }
 
@@ -1009,7 +1063,7 @@
     });
 
     audio.addEventListener("pause", () => {
-      document.getElementById("playPause").textContent = "▶";
+      document.getElementById("playPause").textContent = "▶️";
       document.getElementById("playPause").setAttribute("aria-label", "Play");
     });
 
@@ -1037,7 +1091,10 @@
     });
 
     audio.volume = 0.8;
+    updatePlayerImage(tracks[0]);
     refreshViews();
   </script>
 </body>
 </html>
+    
+    
