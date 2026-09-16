@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090916">
+  <title>Soniva — Feel the Sound</title>
+
+  <style>
+    :root {
+      --bg: #090916;
+      --panel: #15152b;
+      --panel-light: #202044;
+      --text: #f8f8ff;
+      --muted: #a6a6c3;
+      --blue: #237bff;
+      --cyan: #54e5ed;
+      --pink: #c34cff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 15%, #24204c 0, transparent 38%),
+        radial-gradient(ellipse at 90% 70%, #151b48 0, transparent 40%),
+        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      width: min(100%, 1180px);
+      min-height: 100vh;
+      margin: auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .round-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #343452;
+      border-radius: 50%;
+      color: white;
+      background: #1a1a31;
+    }
+
+    .screen {
+      display: none;
+      animation: appear .3s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Welcome screen */
+    .welcome {
+      min-height: 72vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 30px;
+      padding: 30px 5%;
+      border: 1px solid #29294a;
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 35%, #3c2e83 0, transparent 35%),
+        linear-gradient(135deg, #191933, #101021);
+    }
+
+    .welcome-copy {
+      max-width: 440px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .welcome h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: .98;
+      margin-bottom: 20px;
+    }
+
+    .welcome h1 span {
+      display: block;
+      color: #aeb7ff;
+      font-weight: 400;
+    }
+
+    .welcome p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 350px;
+      margin-bottom: 30px;
+    }
+
+    .primary-button {
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 25px;
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(100deg, #1978ff, #7255ff);
+      box-shadow: 0 8px 30px #286aff45;
+    }
+
+    .headphone-art {
+      min-height: 380px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: #316eff50;
+      filter: blur(45px);
+    }
+
+    .headphones {
+      position: relative;
+      width: min(100%, 330px);
+      filter: drop-shadow(0 25px 35px #0008);
+    }
+
+    /* Main dashboard */
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 28px 0 16px;
+    }
+
+    .section-heading h2 {
+      font-size: 23px;
+      margin-bottom: 6px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .text-button {
+      border: 0;
+      color: var(--cyan);
+      background: transparent;
+      font-size: 13px;
+    }
+
+    .search-wrap {
+      margin: 20px 0 25px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 15px 18px;
+      color: white;
+      border: 1px solid #343452;
+      border-radius: 14px;
+      outline: none;
+      background: #17172d;
+    }
+
+    .search:focus {
+      border-color: var(--blue);
+    }
+
+    .category-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .category {
+      padding: 10px 16px;
+      color: #c7c7df;
+      border: 1px solid #33334e;
+      border-radius: 999px;
+      background: #17172b;
+      font-size: 13px;
+    }
+
+    .category.selected {
+      color: white;
+      border-color: transparent;
+      background: linear-gradient(100deg, #246fff, #7955ff);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 16px;
+    }
+
+    .feature-card {
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 24px;
+      border: 1px solid #41416b;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 75% 20%, #6a43e5, transparent 36%),
+        linear-gradient(135deg, #263e87, #17172e 75%);
+    }
+
+    .feature-card.second {
+      background:
+        radial-gradient(circle at 80% 25%, #1e9aa9, transparent 38%),
+        linear-gradient(135deg, #173e5b, #17172e 75%);
+    }
+
+    .feature-card::after {
+      content: "♫";
+      position: absolute;
+      right: 24px;
+      top: 12px;
+      color: #ffffff1c;
+      font-size: 110px;
+      font-weight: bold;
+    }
+
+    .feature-card small {
+      color: #d2d8ff;
+      margin-bottom: 9px;
+      z-index: 1;
+    }
+
+    .feature-card h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      z-index: 1;
+    }
+
+    .feature-card p {
+      color: #c1c6e4;
+      font-size: 13px;
+      z-index: 1;
+    }
+
+    .song-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .song-card {
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #292943;
+      border-radius: 18px;
+      background: #151529d9;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .song-card:hover,
+    .song-card.active {
+      transform: translateY(-2px);
+      border-color: #5e7bff;
+    }
+
+    .album-art {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      border-radius: 13px;
+      color: white;
+      font-size: 35px;
+      background: linear-gradient(135deg, #087eae, #6849db);
+    }
+
+    .album-art.pink {
+      background: linear-gradient(135deg, #df3c9e, #4938ba);
+    }
+
+    .album-art.orange {
+      background: linear-gradient(135deg, #ef8148, #8b3a9d);
+    }
+
+    .album-art.green {
+      background: linear-gradient(135deg, #13a69c, #294ca7);
+    }
+
+    .song-card h3 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .song-card p {
+      color: var(--muted);
+      font-size: 12px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .song-play {
+      width: 34px;
+      height: 34px;
+      float: right;
+      margin-top: 10px;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background: #276eff;
+    }
+
+    /* Playlist screen */
+    .playlist-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 24px;
+      border: 1px solid #303052;
+      border-radius: 22px;
+      background: linear-gradient(120deg, #242b65, #17172d);
+      margin-bottom: 25px;
+    }
+
+    .playlist-cover {
+      width: 145px;
+      aspect-ratio: 1;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      font-size: 58px;
+      background: linear-gradient(135deg, #10a9c6, #6348e9);
+    }
+
+    .playlist-header h2 {
+      font-size: clamp(25px, 4vw, 38px);
+      margin-bottom: 10px;
+    }
+
+    .playlist-header p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .track-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .track-row {
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      background: #151529b8;
+      cursor: pointer;
+    }
+
+    .track-row:hover,
+    .track-row.active {
+      border-color: #4e68c9;
+      background: #20203e;
+    }
+
+    .track-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #167ba7, #6847d7);
+    }
+
+    .track-row h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .track-row p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .track-number {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Bottom player */
+    .player {
+      position: sticky;
+      bottom: 12px;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      align-items: center;
+      gap: 18px;
+      margin-top: 30px;
+      padding: 14px 18px;
+      border: 1px solid #3a3a5b;
+      border-radius: 20px;
+      background: #17172df2;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 15px 45px #0005;
+    }
+
+    .player-song {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .mini-art {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #10a9c6, #6348e9);
+    }
+
+    .player-song h3,
+    .player-song p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .player-song h3 {
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .player-song p {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .player-center {
+      display: grid;
+      gap: 10px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .control {
+      border: 0;
+      color: #e7e7f7;
+      background: transparent;
+      font-size: 20px;
+    }
+
+    .play-control {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      color: #07111f;
+      background: var(--cyan);
+      font-size: 17px;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+
+    .volume-wrap {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .volume-wrap input {
+      max-width: 100px;
+    }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        padding: 18px 14px 24px;
+      }
+
+      .welcome {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding: 30px 24px 10px;
+      }
+
+      .welcome-copy {
+        max-width: none;
+      }
+
+      .welcome h1 {
+        font-size: 48px;
+      }
+
+      .headphone-art {
+        min-height: 240px;
+      }
+
+      .headphones {
+        width: 220px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .song-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .player {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        padding: 11px;
+        bottom: 8px;
+      }
+
+      .player-center {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+
+      .player-song {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .volume-wrap {
+        display: none;
+      }
+
+      .controls {
+        gap: 15px;
+      }
+
+      .play-control {
+        width: 36px;
+        height: 36px;
+      }
+
+      .mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        gap: 8px;
+        margin: 22px 0;
+        padding: 9px;
+        border: 1px solid #292943;
+        border-radius: 16px;
+        background: #151529;
+      }
+
+      .mobile-nav button {
+        flex: 1;
+        padding: 10px 4px;
+        border: 0;
+        border-radius: 10px;
+        color: var(--muted);
+        background: transparent;
+        font-size: 12px;
+      }
+
+      .mobile-nav button.active {
+        color: white;
+        background: #30305a;
+      }
+
+      .playlist-header {
+        align-items: flex-start;
+        gap: 16px;
+        padding: 17px;
+      }
+
+      .playlist-cover {
+        width: 100px;
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .welcome h1 {
+        font-size: 40px;
+      }
+
+      .playlist-header {
+        flex-direction: column;
+      }
+
+      .track-row {
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">Soniva<span>.</span></div>
+      <div class="top-actions">
+        <button class="round-button" id="headerSearch" aria-label="Search">⌕</button>
+        <button class="round-button" id="headerHome" aria-label="Home">⌂</button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" aria-label="Main navigation">
+      <button class="active" data-screen="welcome">Welcome</button>
+      <button data-screen="home">Discover</button>
+      <button data-screen="playlist">Playlist</button>
+    </nav>
+
+    <!-- Welcome screen -->
+    <section class="screen active" id="welcome">
+      <div class="welcome">
+        <div class="welcome-copy">
+          <div class="eyebrow">Welcome to Soniva</div>
+          <h1>Feel the Sound <span>Feel the vibe</span></h1>
+          <p>
+            Discover music that matches your mood.
+            Your next favourite song is just one tap away.
+          </p>
+          <button class="primary-button" id="getStarted">Get Started&nbsp; →</button>
+        </div>
+
+        <div class="headphone-art" aria-label="Decorative headphones illustration">
+          <div class="glow"></div>
+          <svg class="headphones" viewBox="0 0 360 360" role="img" aria-label="Blue and white headphones">
+            <defs>
+              <linearGradient id="band" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f5f7ff"/>
+                <stop offset=".42" stop-color="#a7b7e9"/>
+                <stop offset=".7" stop-color="#1768d8"/>
+                <stop offset="1" stop-color="#071d56"/>
+              </linearGradient>
+              <linearGradient id="cup" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".45" stop-color="#b7c8f4"/>
+                <stop offset="1" stop-color="#4164bd"/>
+              </linearGradient>
+            </defs>
+            <path d="M82 202 V153 C82 76 125 34 181 34 C239 34 280 79 280 153 V202"
+                  fill="none" stroke="#061744" stroke-width="43" stroke-linecap="round"/>
+            <path d="M82 194 V151 C82 82 125 43 181 43 C235 43 271 83 271 151 V194"
+                  fill="none" stroke="url(#band)" stroke-width="31" stroke-linecap="round"/>
+            <path d="M82 170 C53 164 38 184 38 222 V268 C38 297 57 313 82 304 L111 291 V185 Z"
+                  fill="url(#cup)" stroke="#dce6ff" stroke-width="3"/>
+            <path d="M278 170 C307 164 322 184 322 222 V268 C322 297 303 313 278 304 L249 291 V185 Z"
+                  fill="url(#cup)" stroke="#dce6ff" stroke-width="3"/>
+            <rect x="79" y="155" width="53" height="159" rx="25" fill="url(#band)" stroke="#8caef9" stroke-width="3"/>
+            <rect x="228" y="155" width="53" height="159" rx="25" fill="url(#band)" stroke="#8caef9" stroke-width="3"/>
+            <rect x="91" y="176" width="30" height="116" rx="15" fill="#101a3c"/>
+            <rect x="239" y="176" width="30" height="116" rx="15" fill="#101a3c"/>
+            <path d="M104 56 C132 27 192 22 225 45" fill="none" stroke="#4aa6ff" stroke-width="5" stroke-linecap="round"/>
+            <path d="M63 224 C58 246 62 273 78 286" fill="none" stroke="#ffffff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discover screen -->
+    <section class="screen" id="home">
+      <div class="section-heading">
+        <div>
+          <h2>Good music, good mood.</h2>
+          <p>Find the sound that feels like you.</p>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <input class="search" id="search" type="search" placeholder="⌕  Search songs or artists..." aria-label="Search songs or artists">
+      </div>
+
+      <div class="category-row">
+        <button class="category selected" data-filter="all">All</button>
+        <button class="category" data-filter="Afrobeats">Afrobeats</button>
+        <button class="category" data-filter="Chill">Chill</button>
+        <button class="category" data-filter="Pop">Pop</button>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <small>SONIVA MIX</small>
+          <h3>Today’s popular music</h3>
+          <p>Fresh sounds for your everyday moments.</p>
+        </div>
+        <div class="feature-card second">
+          <small>MADE FOR YOU</small>
+          <h3>Feel the vibe</h3>
+          <p>Play your favourite tracks.</p>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <h2>Popular music</h2>
+          <p>Tap a song to start listening.</p>
+        </div>
+        <button class="text-button" id="viewPlaylist">View playlist →</button>
+      </div>
+
+      <div class="song-grid" id="songGrid"></div>
+      <p id="noResults" style="display:none;color:var(--muted);padding:20px 0;">No matching songs found.</p>
+    </section>
+
+    <!-- Playlist screen -->
+    <section class="screen" id="playlist">
+      <div class="playlist-header">
+        <div class="playlist-cover">♫</div>
+        <div>
+          <div class="eyebrow">Soniva collection</div>
+          <h2>Your playlist</h2>
+          <p>Your music, your mood.<br><span id="playlistCount">3 songs</span></p>
+          <button class="primary-button" id="playAll" style="margin-top:16px;">▶ Play all</button>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <h2>Tracks</h2>
+          <p>Choose what you want to hear.</p>
+        </div>
+      </div>
+
+      <div class="track-list" id="trackList"></div>
+    </section>
+
+    <!-- Persistent music player -->
+    <footer class="player">
+      <div class="player-song">
+        <div class="mini-art">♫</div>
+        <div style="min-width:0;">
+          <h3 id="currentTitle">Choose a song</h3>
+          <p id="currentArtist">Soniva player</p>
+        </div>
+      </div>
+
+      <div class="player-center">
+        <div class="controls">
+          <button class="control" id="previous" aria-label="Previous song">⏮</button>
+          <button class="play-control" id="playPause" aria-label="Play">▶</button>
+          <button class="control" id="next" aria-label="Next song">⏭</button>
+        </div>
+        <div class="progress-row">
+          <span id="currentTime">0:00</span>
+          <input id="progress" type="range" min="0" max="100" value="0" aria-label="Song progress">
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <div class="volume-wrap">
+        <span>🔊</span>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume">
+      </div>
+    </footer>
+
+    <audio id="audio"></audio>
+  </div>
+
+  <script>
+    // Change these details to match your own MP3 files.
+    const tracks = [
+      { title: "Jhaadilx", artist: "Your Artist", file: "jhaadilx.mp3", category: "Afrobeats", art: "♫", color: "" },
+      { title: "Midnight Pulse", artist: "Your Artist", file: "song2.mp3", category: "Chill", art: "☾", color: "pink" },
+      { title: "Electric Dreams", artist: "Your Artist", file: "song3.mp3", category: "Pop", art: "✦", color: "green" },
+      { title: "Shadow Beats", artist: "Your Artist", file: "song4.mp3", category: "Afrobeats", art: "♬", color: "orange" }
+    ];
+
+    const audio = document.getElementById("audio");
+    const songGrid = document.getElementById("songGrid");
+    const trackList = document.getElementById("trackList");
+    const searchInput = document.getElementById("search");
+    const noResults = document.getElementById("noResults");
+
+    let currentIndex = 0;
+    let currentFilter = "all";
+
+    function showScreen(screenId) {
+      document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.toggle("active", screen.id === screenId);
+      });
+
+      document.querySelectorAll(".mobile-nav button").forEach(button => {
+        button.classList.toggle("active", button.dataset.screen === screenId);
+      });
+    }
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) return "0:00";
+      const minutes = Math.floor(seconds / 60);
+      const remainder = Math.floor(seconds % 60).toString().padStart(2, "0");
+      return `${minutes}:${remainder}`;
+    }
+
+    function filteredTracks() {
+      const search = searchInput.value.trim().toLowerCase();
+
+      return tracks
+        .map((track, index) => ({ ...track, index }))
+        .filter(track => {
+          const matchesSearch = `${track.title} ${track.artist}`.toLowerCase().includes(search);
+          const matchesCategory = currentFilter === "all" || track.category === currentFilter;
+          return matchesSearch && matchesCategory;
+        });
+    }
+
+    function renderSongs() {
+      const visibleTracks = filteredTracks();
+      songGrid.innerHTML = "";
+      noResults.style.display = visibleTracks.length ? "none" : "block";
+
+      visibleTracks.forEach(track => {
+        const card = document.createElement("article");
+        card.className = "song-card" + (track.index === currentIndex ? " active" : "");
+        card.innerHTML = `
+          <div class="album-art ${track.color}">${track.art}</div>
+          <h3></h3>
+          <p></p>
+          <button class="song-play" aria-label="Play song">▶</button>
+        `;
+        card.querySelector("h3").textContent = track.title;
+        card.querySelector("p").textContent = track.artist;
+        card.addEventListener("click", () => playTrack(track.index));
+        songGrid.appendChild(card);
+      });
+    }
+
+    function renderPlaylist() {
+      trackList.innerHTML = "";
+      document.getElementById("playlistCount").textContent =
+        `${tracks.length} ${tracks.length === 1 ? "song" : "songs"}`;
+
+      tracks.forEach((track, index) => {
+        const row = document.createElement("div");
+        row.className = "track-row" + (index === currentIndex ? " active" : "");
+        row.innerHTML = `
+          <div class="track-icon">${track.art}</div>
+          <div>
+            <h3></h3>
+            <p></p>
+          </div>
+          <span class="track-number">${index + 1}　▶</span>
+        `;
+        row.querySelector("h3").textContent = track.title;
+        row.querySelector("p").textContent = track.artist;
+        row.addEventListener("click", () => playTrack(index));
+        trackList.appendChild(row);
+      });
+    }
+
+    function refreshViews() {
+      renderSongs();
+      renderPlaylist();
+    }
+
+    function playTrack(index) {
+      if (index < 0 || index >= tracks.length) return;
+
+      currentIndex = index;
+      const track = tracks[currentIndex];
+
+      audio.src = track.file;
+      document.getElementById("currentTitle").textContent = track.title;
+      document.getElementById("currentArtist").textContent = track.artist;
+
+      refreshViews();
+
+      audio.play().then(() => {
+        document.getElementById("playPause").textContent = "Ⅱ";
+        document.getElementById("playPause").setAttribute("aria-label", "Pause");
+      }).catch(() => {
+        document.getElementById("playPause").textContent = "▶";
+        document.getElementById("playPause").setAttribute("aria-label", "Play");
+        alert(`Could not play "${track.file}". Check that the MP3 file exists and the filename matches.`);
+      });
+    }
+
+    document.getElementById("getStarted").addEventListener("click", () => showScreen("home"));
+    document.getElementById("viewPlaylist").addEventListener("click", () => showScreen("playlist"));
+    document.getElementById("headerHome").addEventListener("click", () => showScreen("home"));
+    document.getElementById("headerSearch").addEventListener("click", () => {
+      showScreen("home");
+      searchInput.focus();
+    });
+
+    document.querySelectorAll(".mobile-nav button").forEach(button => {
+      button.addEventListener("click", () => showScreen(button.dataset.screen));
+    });
+
+    document.querySelectorAll(".category").forEach(button => {
+      button.addEventListener("click", () => {
+        currentFilter = button.dataset.filter;
+        document.querySelectorAll(".category").forEach(item => item.classList.remove("selected"));
+        button.classList.add("selected");
+        renderSongs();
+      });
+    });
+
+    searchInput.addEventListener("input", renderSongs);
+
+    document.getElementById("playAll").addEventListener("click", () => playTrack(0));
+
+    document.getElementById("playPause").addEventListener("click", () => {
+      if (!audio.src) {
+        playTrack(currentIndex);
+      } else if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    document.getElementById("previous").addEventListener("click", () => {
+      playTrack((currentIndex - 1 + tracks.length) % tracks.length);
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+      playTrack((currentIndex + 1) % tracks.length);
+    });
+
+    audio.addEventListener("play", () => {
+      document.getElementById("playPause").textContent = "Ⅱ";
+      document.getElementById("playPause").setAttribute("aria-label", "Pause");
+    });
+
+    audio.addEventListener("pause", () => {
+      document.getElementById("playPause").textContent = "▶";
+      document.getElementById("playPause").setAttribute("aria-label", "Play");
+    });
+
+    audio.addEventListener("ended", () => {
+      playTrack((currentIndex + 1) % tracks.length);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      document.getElementById("currentTime").textContent = formatTime(audio.currentTime);
+      document.getElementById("duration").textContent = formatTime(audio.duration);
+
+      if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        document.getElementById("progress").value = (audio.currentTime / audio.duration) * 100;
+      }
+    });
+
+    document.getElementById("progress").addEventListener("input", event => {
+      if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        audio.currentTime = (Number(event.target.value) / 100) * audio.duration;
+      }
+    });
+
+    document.getElementById("volume").addEventListener("input", event => {
+      audio.volume = Number(event.target.value);
+    });
+
+    audio.volume = 0.8;
+    refreshViews();
+  </script>
+</body>
+</html>
