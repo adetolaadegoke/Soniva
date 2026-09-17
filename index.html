@@ -239,9 +239,9 @@
     .artist-photo {
       display: block;
       width: 120px;
-      height: 120px:
+      height: 120px;
       aspect-ratio: 1;
-      margin: 0 auto 13px:
+      margin: 0 auto 13px;
       border: 2px solid #45456b;
       border-radius: 14px;
       object-fit: cover;
@@ -591,7 +591,7 @@
       <div class="section-heading">
         <div>
           <h2>Your playlist</h2>
-          <p id="playlistCount">1 song</p>
+          <p id="playlistCount">2 songs</p>
         </div>
         <button class="primary-button" id="playAll">▶ Play all</button>
       </div>
@@ -632,13 +632,18 @@
   </div>
 
   <script>
-    // Keep these files in the same GitHub folder as index.html.
     const tracks = [
       {
         title: "Cost of Living",
         artist: "BIG-HASSAN",
         file: "jhaadilx.mp3",
         image: "big-hassan.jpg"
+      },
+      {
+        title: "Omo Dada",
+        artist: "Haruna Isola",
+        file: "https://lwejgqhvuhhgjxxbbtyt.supabase.co/storage/v1/object/public/music/new-song.mp3",
+        image: "https://lwejgqhvuhhgjxxbbtyt.supabase.co/storage/v1/object/public/music/haruna-ishola.jpg"
       }
     ];
 
@@ -781,7 +786,7 @@
       audio.play().catch(() => {
         document.getElementById("playPause").textContent = "▶";
         document.getElementById("playPause").setAttribute("aria-label", "Play");
-        alert(`Could not play ${track.file}. Check that the MP3 is uploaded and its filename matches.`);
+        alert(`Could not play ${track.title}. Check that the audio file is uploaded and its URL or filename is correct.`);
       });
     }
 
