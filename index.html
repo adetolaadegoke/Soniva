@@ -435,15 +435,16 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    // Replace the placeholder below with your Supabase PUBLISHABLE key.
+    // Paste ONLY your Supabase publishable key between the quotes.
+    // Do not include the project URL or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=.
     // Never put a service_role or secret key in this file.
     const SUPABASE_URL = "https://lwejgqhvuhhgjxxbbtyt.supabase.co";
-    const SUPABASE_PUBLISHABLE_KEY = "NEXT_PUBLIC_SUPABASE_URL=https://lwejgqhvuhhgjxxbbtyt.supabase.co
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_nFmDFZ5CBY2MyApniCURMA_aomSskZB";
+    const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_NEW_PUBLISHABLE_KEY_HERE";
 
     const supabaseReady =
       window.supabase &&
-      SUPABASE_PUBLISHABLE_KEY !== "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+      SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_") &&
+      SUPABASE_PUBLISHABLE_KEY !== "PASTE_YOUR_NEW_PUBLISHABLE_KEY_HERE";
 
     const supabaseClient = supabaseReady
       ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
@@ -641,7 +642,6 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_nFmDFZ5CBY2MyApniCURMA_aomSs
         databaseId: song.id
       }));
 
-      // Keep the two demo songs and avoid adding the same uploaded row twice.
       const existingIds = new Set(tracks.map(track => track.databaseId).filter(Boolean));
       uploadedTracks.forEach(track => {
         if (!existingIds.has(track.databaseId)) tracks.push(track);
@@ -660,6 +660,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_nFmDFZ5CBY2MyApniCURMA_aomSs
         status.textContent = "First add your Supabase publishable key in the code.";
         return;
       }
+
       if (!email || password.length < 6) {
         status.textContent = "Enter your email and a password with at least 6 characters.";
         return;
@@ -702,6 +703,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_nFmDFZ5CBY2MyApniCURMA_aomSs
 
     async function signOut() {
       if (!supabaseClient) return;
+
       const { error } = await supabaseClient.auth.signOut();
       document.getElementById("authStatus").textContent = error ? error.message : "Signed out.";
       updateAccountUI(null);
@@ -804,10 +806,12 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_nFmDFZ5CBY2MyApniCURMA_aomSs
 
     document.getElementById("getStarted").addEventListener("click", () => showScreen("home"));
     document.getElementById("headerHome").addEventListener("click", () => showScreen("welcome"));
+
     document.getElementById("headerSearch").addEventListener("click", () => {
       showScreen("home");
       searchInput.focus();
     });
+
     document.getElementById("openPlaylist").addEventListener("click", () => showScreen("playlist"));
     document.getElementById("playAll").addEventListener("click", () => playTrack(0));
 
