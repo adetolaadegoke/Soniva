@@ -16,11 +16,7 @@
       --cyan: #54e5ed;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
@@ -33,19 +29,10 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    button, input {
-      font: inherit;
-    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
 
-    button {
-      cursor: pointer;
-    }
-
-    .app {
-      width: min(100%, 1180px);
-      margin: auto;
-      padding: 24px;
-    }
+    .app { width: min(100%, 1180px); margin: auto; padding: 24px; }
 
     .topbar {
       display: flex;
@@ -55,20 +42,9 @@
       margin-bottom: 24px;
     }
 
-    .brand {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .brand span {
-      color: var(--cyan);
-    }
-
-    .top-actions {
-      display: flex;
-      gap: 10px;
-    }
+    .brand { font-size: 28px; font-weight: 800; letter-spacing: 1px; }
+    .brand span { color: var(--cyan); }
+    .top-actions { display: flex; gap: 10px; }
 
     .round-button {
       width: 42px;
@@ -98,31 +74,17 @@
       background: transparent;
     }
 
-    .mobile-nav button.active {
-      color: white;
-      background: #30305a;
-    }
+    .mobile-nav button.active { color: white; background: #30305a; }
 
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-      animation: appear .25s ease;
-    }
-
-    @keyframes appear {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .screen { display: none; }
+    .screen.active { display: block; }
 
     .welcome {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 30px;
-      min-height: 500px;
+      min-height: 420px;
       padding: 36px 5%;
       border: 1px solid #29294a;
       border-radius: 30px;
@@ -132,10 +94,7 @@
         linear-gradient(135deg, #191933, #101021);
     }
 
-    .welcome-copy {
-      max-width: 460px;
-    }
-
+    .welcome-copy { max-width: 460px; }
     .eyebrow {
       margin-bottom: 16px;
       color: var(--cyan);
@@ -145,44 +104,17 @@
       text-transform: uppercase;
     }
 
-    .welcome h1 {
-      margin-bottom: 20px;
-      font-size: clamp(42px, 6vw, 76px);
-      line-height: .98;
-    }
-
-    .welcome h1 span {
-      display: block;
-      margin-top: 8px;
-      color: #aeb7ff;
-      font-weight: 400;
-    }
-
-    .welcome p {
-      max-width: 360px;
-      margin-bottom: 28px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+    .welcome h1 { margin-bottom: 20px; font-size: clamp(42px, 6vw, 76px); line-height: .98; }
+    .welcome h1 span { display: block; margin-top: 8px; color: #aeb7ff; font-weight: 400; }
+    .welcome p { max-width: 360px; margin-bottom: 28px; color: var(--muted); line-height: 1.7; }
 
     .primary-button {
-      padding: 15px 25px;
+      padding: 13px 22px;
       border: 0;
       border-radius: 999px;
       color: white;
       font-weight: 700;
       background: linear-gradient(100deg, #1978ff, #7255ff);
-    }
-
-    .headphone-art {
-      display: grid;
-      min-height: 300px;
-      place-items: center;
-    }
-
-    .headphones {
-      width: min(100%, 330px);
-      filter: drop-shadow(0 25px 35px #0008);
     }
 
     .section-heading {
@@ -193,30 +125,21 @@
       margin: 28px 0 16px;
     }
 
-    .section-heading h2 {
-      margin-bottom: 6px;
-      font-size: 24px;
-    }
+    .section-heading h2 { margin-bottom: 6px; font-size: 24px; }
+    .section-heading p { color: var(--muted); font-size: 13px; }
 
-    .section-heading p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .search {
+    .search, .auth-input, .upload-input {
       width: 100%;
-      margin: 8px 0 22px;
-      padding: 15px 18px;
+      padding: 13px 15px;
       border: 1px solid #343452;
-      border-radius: 14px;
+      border-radius: 12px;
       outline: none;
       color: white;
       background: #17172d;
     }
 
-    .search:focus {
-      border-color: var(--blue);
-    }
+    .search { margin: 8px 0 22px; }
+    .search:focus, .auth-input:focus, .upload-input:focus { border-color: var(--blue); }
 
     .song-grid {
       display: grid;
@@ -232,15 +155,12 @@
       background: #151529d9;
     }
 
-    .song-card.active {
-      border-color: #5e7bff;
-    }
+    .song-card.active { border-color: #5e7bff; }
 
     .artist-photo {
       display: block;
       width: 120px;
       height: 120px;
-      aspect-ratio: 1;
       margin: 0 auto 13px;
       border: 2px solid #45456b;
       border-radius: 14px;
@@ -274,10 +194,7 @@
       background: var(--blue);
     }
 
-    .track-list {
-      display: grid;
-      gap: 10px;
-    }
+    .track-list { display: grid; gap: 10px; }
 
     .track-row {
       display: grid;
@@ -291,29 +208,27 @@
       cursor: pointer;
     }
 
-    .track-row.active {
-      border-color: #4e68c9;
-      background: #20203e;
+    .track-row.active { border-color: #4e68c9; background: #20203e; }
+    .track-row img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+    .track-row h3 { margin-bottom: 5px; font-size: 14px; }
+    .track-row p, .track-number { color: var(--muted); font-size: 12px; }
+
+    .panel {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #292943;
+      border-radius: 18px;
+      background: #151529d9;
     }
 
-    .track-row img {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: linear-gradient(135deg, #087eae, #6849db);
-    }
-
-    .track-row h3 {
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-
-    .track-row p,
-    .track-number {
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .panel h2 { margin-bottom: 12px; }
+    .panel p { color: var(--muted); line-height: 1.6; }
+    .form-grid { display: grid; gap: 12px; margin-top: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .file-label { display: grid; gap: 7px; color: var(--muted); font-size: 13px; }
+    .status { min-height: 20px; margin-top: 12px; color: var(--cyan); font-size: 13px; overflow-wrap: anywhere; }
+    .small-button { padding: 10px 15px; border: 1px solid #45456b; border-radius: 999px; color: white; background: #252545; }
+    .hidden { display: none !important; }
 
     .player {
       position: sticky;
@@ -332,13 +247,7 @@
       backdrop-filter: blur(16px);
     }
 
-    .player-song {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
+    .player-song { display: flex; align-items: center; gap: 12px; min-width: 0; }
     .mini-art {
       display: grid;
       width: 48px;
@@ -350,149 +259,38 @@
       background: linear-gradient(135deg, #10a9c6, #6348e9);
     }
 
-    .mini-art img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .player-song h3,
-    .player-song p {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .player-song h3 {
-      margin-bottom: 5px;
-      font-size: 13px;
-    }
-
-    .player-song p {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .player-center {
-      display: grid;
-      gap: 10px;
-    }
-
-    .controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-    }
-
-    .control {
-      border: 0;
-      color: #e7e7f7;
-      background: transparent;
-      font-size: 20px;
-    }
-
+    .mini-art img { width: 100%; height: 100%; object-fit: cover; }
+    .player-song h3, .player-song p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .player-song h3 { margin-bottom: 5px; font-size: 13px; }
+    .player-song p { color: var(--muted); font-size: 11px; }
+    .player-center { display: grid; gap: 10px; }
+    .controls { display: flex; align-items: center; justify-content: center; gap: 18px; }
+    .control { border: 0; color: #e7e7f7; background: transparent; font-size: 20px; }
     .play-control {
-      width: 40px;
-      height: 40px;
-      border: 0;
-      border-radius: 50%;
-      color: #07111f;
-      background: var(--cyan);
-      font-size: 17px;
+      width: 40px; height: 40px; border: 0; border-radius: 50%;
+      color: #07111f; background: var(--cyan); font-size: 17px;
     }
 
-    .progress-row {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .progress-row input {
-      width: 100%;
-      accent-color: var(--cyan);
-    }
-
-    .volume-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      gap: 10px;
-      color: var(--muted);
-    }
-
-    .volume-wrap input {
-      width: 100px;
-      accent-color: var(--cyan);
-    }
-
-    .notice {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-    }
+    .progress-row { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 11px; }
+    .progress-row input { width: 100%; accent-color: var(--cyan); }
+    .volume-wrap { display: flex; align-items: center; justify-content: end; gap: 10px; color: var(--muted); }
+    .volume-wrap input { width: 100px; accent-color: var(--cyan); }
+    .notice { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 
     @media (max-width: 760px) {
-      .app {
-        padding: 16px 12px 24px;
-      }
-
-      .welcome {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 30px 24px 10px;
-      }
-
-      .welcome h1 {
-        font-size: 48px;
-      }
-
-      .headphone-art {
-        min-height: 230px;
-      }
-
-      .headphones {
-        width: 220px;
-      }
-
-      .player {
-        grid-template-columns: 1fr auto;
-        gap: 10px;
-        padding: 11px;
-      }
-
-      .player-center {
-        grid-column: 1 / -1;
-        grid-row: 2;
-      }
-
-      .player-song {
-        grid-column: 1;
-        grid-row: 1;
-      }
-
-      .volume-wrap {
-        display: none;
-      }
+      .app { padding: 16px 12px 24px; }
+      .welcome { grid-template-columns: 1fr; min-height: auto; padding: 30px 24px; }
+      .welcome h1 { font-size: 48px; }
+      .player { grid-template-columns: 1fr auto; gap: 10px; padding: 11px; }
+      .player-center { grid-column: 1 / -1; grid-row: 2; }
+      .player-song { grid-column: 1; grid-row: 1; }
+      .volume-wrap { display: none; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 380px) {
-      .welcome h1 {
-        font-size: 40px;
-      }
-
-      .song-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .screen.active {
-        animation: none;
-      }
+      .welcome h1 { font-size: 40px; }
+      .song-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -501,7 +299,6 @@
   <div class="app">
     <header class="topbar">
       <div class="brand">Soniva<span>.</span></div>
-
       <div class="top-actions">
         <button class="round-button" id="headerSearch" aria-label="Search">⌕</button>
         <button class="round-button" id="headerHome" aria-label="Home">⌂</button>
@@ -512,6 +309,7 @@
       <button class="active" data-screen="welcome">Welcome</button>
       <button data-screen="home">Discover</button>
       <button data-screen="playlist">Playlist</button>
+      <button data-screen="account">Account</button>
     </nav>
 
     <section class="screen active" id="welcome">
@@ -519,43 +317,10 @@
         <div class="welcome-copy">
           <div class="eyebrow">Welcome to Soniva</div>
           <h1>Feel the Sound <span>Feel the vibe</span></h1>
-          <p>
-            Discover music that matches your mood.
-            Your next favourite song is just one tap away.
-          </p>
+          <p>Discover music that matches your mood. Your next favourite song is just one tap away.</p>
           <button class="primary-button" id="getStarted">Get Started →</button>
         </div>
-
-        <div class="headphone-art">
-          <svg class="headphones" viewBox="0 0 360 360" role="img" aria-label="Blue and white headphones">
-            <defs>
-              <linearGradient id="band" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#f5f7ff"/>
-                <stop offset=".42" stop-color="#a7b7e9"/>
-                <stop offset=".7" stop-color="#1768d8"/>
-                <stop offset="1" stop-color="#071d56"/>
-              </linearGradient>
-              <linearGradient id="cup" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#ffffff"/>
-                <stop offset=".45" stop-color="#b7c8f4"/>
-                <stop offset="1" stop-color="#4164bd"/>
-              </linearGradient>
-            </defs>
-            <path d="M82 202 V153 C82 76 125 34 181 34 C239 34 280 79 280 153 V202"
-                  fill="none" stroke="#061744" stroke-width="43" stroke-linecap="round"/>
-            <path d="M82 194 V151 C82 82 125 43 181 43 C235 43 271 83 271 151 V194"
-                  fill="none" stroke="url(#band)" stroke-width="31" stroke-linecap="round"/>
-            <path d="M82 170 C53 164 38 184 38 222 V268 C38 297 57 313 82 304 L111 291 V185 Z"
-                  fill="url(#cup)" stroke="#dce6ff" stroke-width="3"/>
-            <path d="M278 170 C307 164 322 184 322 222 V268 C322 297 303 313 278 304 L249 291 V185 Z"
-                  fill="url(#cup)" stroke="#dce6ff" stroke-width="3"/>
-            <rect x="79" y="155" width="53" height="159" rx="25" fill="url(#band)" stroke="#8caef9" stroke-width="3"/>
-            <rect x="228" y="155" width="53" height="159" rx="25" fill="url(#band)" stroke="#8caef9" stroke-width="3"/>
-            <rect x="91" y="176" width="30" height="116" rx="15" fill="#101a3c"/>
-            <rect x="239" y="176" width="30" height="116" rx="15" fill="#101a3c"/>
-            <path d="M104 56 C132 27 192 22 225 45" fill="none" stroke="#4aa6ff" stroke-width="5" stroke-linecap="round"/>
-          </svg>
-        </div>
+        <div aria-hidden="true" style="text-align:center;font-size:130px;">🎧</div>
       </div>
     </section>
 
@@ -567,13 +332,7 @@
         </div>
       </div>
 
-      <input
-        class="search"
-        id="search"
-        type="search"
-        placeholder="Search songs or artists..."
-        aria-label="Search songs or artists"
-      >
+      <input class="search" id="search" type="search" placeholder="Search songs or artists..." aria-label="Search songs or artists">
 
       <div class="section-heading">
         <div>
@@ -591,12 +350,56 @@
       <div class="section-heading">
         <div>
           <h2>Your playlist</h2>
-          <p id="playlistCount">2 songs</p>
+          <p id="playlistCount">Loading songs…</p>
         </div>
         <button class="primary-button" id="playAll">▶ Play all</button>
       </div>
-
       <div class="track-list" id="trackList"></div>
+    </section>
+
+    <section class="screen" id="account">
+      <div class="panel">
+        <h2>Soniva account</h2>
+        <p id="accountMessage">Sign in or create an account to upload music.</p>
+
+        <div id="authForms" class="form-grid">
+          <input class="auth-input" id="email" type="email" placeholder="Email address" autocomplete="email">
+          <input class="auth-input" id="password" type="password" placeholder="Password (at least 6 characters)" autocomplete="current-password">
+          <div class="form-row">
+            <button class="primary-button" id="signUp">Create account</button>
+            <button class="small-button" id="signIn">Sign in</button>
+          </div>
+        </div>
+
+        <div id="signedInArea" class="hidden">
+          <p id="signedInEmail"></p>
+          <button class="small-button" id="signOut" style="margin-top:12px;">Sign out</button>
+
+          <div class="panel" style="margin-top:18px;">
+            <h2>Upload a song</h2>
+            <p>Choose an audio file. You can add an optional cover image.</p>
+            <form id="uploadForm" class="form-grid">
+              <input class="auth-input" id="songTitle" type="text" placeholder="Song title" required>
+              <input class="auth-input" id="songArtist" type="text" placeholder="Artist name" required>
+
+              <label class="file-label">
+                Audio file (MP3, WAV, or M4A)
+                <input class="upload-input" id="audioFile" type="file" accept="audio/*" required>
+              </label>
+
+              <label class="file-label">
+                Cover image (optional)
+                <input class="upload-input" id="coverFile" type="file" accept="image/*">
+              </label>
+
+              <button class="primary-button" id="uploadButton" type="submit">Upload song</button>
+            </form>
+            <p class="status" id="uploadStatus" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <p class="status" id="authStatus" aria-live="polite"></p>
+      </div>
     </section>
 
     <footer class="player">
@@ -614,7 +417,6 @@
           <button class="play-control" id="playPause" aria-label="Play">▶</button>
           <button class="control" id="next" aria-label="Next song">⏭</button>
         </div>
-
         <div class="progress-row">
           <span id="currentTime">0:00</span>
           <input id="progress" type="range" min="0" max="100" value="0" aria-label="Song progress">
@@ -631,7 +433,21 @@
     <audio id="audio" preload="metadata"></audio>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    // Replace the placeholder below with your Supabase PUBLISHABLE key.
+    // Never put a service_role or secret key in this file.
+    const SUPABASE_URL = "https://lwejgqhvuhhgjxxbbtyt.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+    const supabaseReady =
+      window.supabase &&
+      SUPABASE_PUBLISHABLE_KEY !== "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+    const supabaseClient = supabaseReady
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
+      : null;
+
     const tracks = [
       {
         title: "Cost of Living",
@@ -654,6 +470,7 @@
     const noResults = document.getElementById("noResults");
 
     let currentIndex = 0;
+    let currentUser = null;
 
     function showScreen(screenId) {
       document.querySelectorAll(".screen").forEach(screen => {
@@ -677,7 +494,7 @@
     function makeImage(track, className) {
       const img = document.createElement("img");
       img.className = className;
-      img.src = track.image;
+      img.src = track.image || "";
       img.alt = `${track.artist} artist picture`;
 
       img.addEventListener("error", () => {
@@ -705,7 +522,6 @@
       visibleTracks.forEach(track => {
         const card = document.createElement("article");
         card.className = "song-card" + (track.index === currentIndex ? " active" : "");
-
         card.appendChild(makeImage(track, "artist-photo"));
 
         const title = document.createElement("h3");
@@ -718,8 +534,8 @@
         play.className = "song-play";
         play.textContent = "▶";
         play.setAttribute("aria-label", `Play ${track.title}`);
-
         play.addEventListener("click", () => playTrack(track.index));
+
         card.addEventListener("click", event => {
           if (event.target !== play) playTrack(track.index);
         });
@@ -737,7 +553,6 @@
       tracks.forEach((track, index) => {
         const row = document.createElement("div");
         row.className = "track-row" + (index === currentIndex ? " active" : "");
-
         row.appendChild(makeImage(track, ""));
 
         const details = document.createElement("div");
@@ -746,7 +561,6 @@
 
         const artist = document.createElement("p");
         artist.textContent = track.artist;
-
         details.append(title, artist);
 
         const number = document.createElement("span");
@@ -779,7 +593,6 @@
       audio.src = track.file;
       document.getElementById("currentTitle").textContent = track.title;
       document.getElementById("currentArtist").textContent = track.artist;
-
       updatePlayerImage(track);
       refreshViews();
 
@@ -788,6 +601,204 @@
         document.getElementById("playPause").setAttribute("aria-label", "Play");
         alert(`Could not play ${track.title}. Check that the audio file is uploaded and its URL or filename is correct.`);
       });
+    }
+
+    function updateAccountUI(user) {
+      currentUser = user || null;
+      document.getElementById("authForms").classList.toggle("hidden", !!user);
+      document.getElementById("signedInArea").classList.toggle("hidden", !user);
+
+      if (user) {
+        document.getElementById("signedInEmail").textContent = `Signed in as ${user.email}`;
+        document.getElementById("accountMessage").textContent = "You are signed in.";
+      } else {
+        document.getElementById("accountMessage").textContent =
+          supabaseClient
+            ? "Sign in or create an account to upload music."
+            : "Add your Supabase publishable key in this file to enable accounts and uploads.";
+      }
+    }
+
+    async function loadUploadedSongs() {
+      if (!supabaseClient) return;
+
+      const { data, error } = await supabaseClient
+        .from("soniva_songs")
+        .select("id, user_id, title, artist, audio_url, cover_url, created_at")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Could not load uploaded songs:", error.message);
+        return;
+      }
+
+      const uploadedTracks = (data || []).map(song => ({
+        title: song.title,
+        artist: song.artist,
+        file: song.audio_url,
+        image: song.cover_url || "",
+        databaseId: song.id
+      }));
+
+      // Keep the two demo songs and avoid adding the same uploaded row twice.
+      const existingIds = new Set(tracks.map(track => track.databaseId).filter(Boolean));
+      uploadedTracks.forEach(track => {
+        if (!existingIds.has(track.databaseId)) tracks.push(track);
+      });
+
+      refreshViews();
+    }
+
+    async function signUp() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const status = document.getElementById("authStatus");
+      status.textContent = "";
+
+      if (!supabaseClient) {
+        status.textContent = "First add your Supabase publishable key in the code.";
+        return;
+      }
+      if (!email || password.length < 6) {
+        status.textContent = "Enter your email and a password with at least 6 characters.";
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signUp({ email, password });
+      if (error) {
+        status.textContent = error.message;
+        return;
+      }
+
+      if (data.session) {
+        updateAccountUI(data.session.user);
+        status.textContent = "Account created and signed in.";
+      } else {
+        status.textContent = "Account created. Check your email to confirm it, then sign in.";
+      }
+    }
+
+    async function signIn() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const status = document.getElementById("authStatus");
+      status.textContent = "";
+
+      if (!supabaseClient) {
+        status.textContent = "First add your Supabase publishable key in the code.";
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (error) {
+        status.textContent = error.message;
+        return;
+      }
+
+      updateAccountUI(data.user);
+      status.textContent = "You are signed in.";
+    }
+
+    async function signOut() {
+      if (!supabaseClient) return;
+      const { error } = await supabaseClient.auth.signOut();
+      document.getElementById("authStatus").textContent = error ? error.message : "Signed out.";
+      updateAccountUI(null);
+    }
+
+    function safeFileName(fileName) {
+      return fileName
+        .normalize("NFKD")
+        .replace(/[^a-zA-Z0-9._-]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    async function uploadSong(event) {
+      event.preventDefault();
+
+      const status = document.getElementById("uploadStatus");
+      const uploadButton = document.getElementById("uploadButton");
+      status.textContent = "";
+
+      if (!supabaseClient || !currentUser) {
+        status.textContent = "Please sign in first.";
+        return;
+      }
+
+      const title = document.getElementById("songTitle").value.trim();
+      const artist = document.getElementById("songArtist").value.trim();
+      const audioFile = document.getElementById("audioFile").files[0];
+      const coverFile = document.getElementById("coverFile").files[0];
+
+      if (!title || !artist || !audioFile) {
+        status.textContent = "Enter the song title, artist, and choose an audio file.";
+        return;
+      }
+
+      uploadButton.disabled = true;
+      uploadButton.textContent = "Uploading…";
+
+      try {
+        const audioPath = `${currentUser.id}/${Date.now()}-${safeFileName(audioFile.name)}`;
+
+        const { error: audioError } = await supabaseClient.storage
+          .from("music")
+          .upload(audioPath, audioFile, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: audioFile.type || "audio/mpeg"
+          });
+
+        if (audioError) throw audioError;
+
+        const { data: audioPublicData } = supabaseClient.storage
+          .from("music")
+          .getPublicUrl(audioPath);
+
+        let coverUrl = null;
+
+        if (coverFile) {
+          const coverPath = `${currentUser.id}/${Date.now()}-${safeFileName(coverFile.name)}`;
+
+          const { error: coverError } = await supabaseClient.storage
+            .from("music")
+            .upload(coverPath, coverFile, {
+              cacheControl: "3600",
+              upsert: false,
+              contentType: coverFile.type || "image/jpeg"
+            });
+
+          if (coverError) throw coverError;
+
+          const { data: coverPublicData } = supabaseClient.storage
+            .from("music")
+            .getPublicUrl(coverPath);
+
+          coverUrl = coverPublicData.publicUrl;
+        }
+
+        const { error: insertError } = await supabaseClient
+          .from("soniva_songs")
+          .insert({
+            user_id: currentUser.id,
+            title,
+            artist,
+            audio_url: audioPublicData.publicUrl,
+            cover_url: coverUrl
+          });
+
+        if (insertError) throw insertError;
+
+        status.textContent = "Song uploaded successfully!";
+        document.getElementById("uploadForm").reset();
+        await loadUploadedSongs();
+      } catch (error) {
+        console.error(error);
+        status.textContent = `Upload failed: ${error.message || "Please check your Supabase setup."}`;
+      } finally {
+        uploadButton.disabled = false;
+        uploadButton.textContent = "Upload song";
+      }
     }
 
     document.getElementById("getStarted").addEventListener("click", () => showScreen("home"));
@@ -804,6 +815,10 @@
     });
 
     searchInput.addEventListener("input", renderSongs);
+    document.getElementById("signUp").addEventListener("click", signUp);
+    document.getElementById("signIn").addEventListener("click", signIn);
+    document.getElementById("signOut").addEventListener("click", signOut);
+    document.getElementById("uploadForm").addEventListener("submit", uploadSong);
 
     document.getElementById("playPause").addEventListener("click", () => {
       if (!audio.src) {
@@ -860,6 +875,19 @@
     audio.volume = 0.8;
     updatePlayerImage(tracks[0]);
     refreshViews();
+    updateAccountUI(null);
+
+    if (supabaseClient) {
+      supabaseClient.auth.getSession().then(({ data }) => {
+        updateAccountUI(data.session?.user || null);
+      });
+
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        updateAccountUI(session?.user || null);
+      });
+
+      loadUploadedSongs();
+    }
   </script>
 </body>
 </html>
